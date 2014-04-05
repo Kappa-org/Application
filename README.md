@@ -1,5 +1,6 @@
 # Kappa\Application
 
+Base application classes for work with Presenters, Forms, etc...
 
 ## Requirements
 
