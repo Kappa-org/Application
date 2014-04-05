@@ -1,0 +1,33 @@
+{
+	"name": "kappa/application",
+	"description": "",
+	"keywords": ["Nette", "Kappa", "Application", "Form", "Secured"],
+	"homepage": "https://github.com/Kappa-org/Application",
+	"license": ["BSD-3-Clause"],
+	"type": "library",
+	"minimum-stability": "dev",
+	"authors": [
+		{
+			"name": "Ondřej Záruba",
+			"homepage": "http://zaruba-ondrej.cz"
+		}
+	],
+	"support": {
+		"email": "zarubaondra@gmail.com",
+		"issues": "https://github.com/Kappa-org/Application/issues"
+	},
+	"require": {
+		"nette/application": "2.2.*"
+	},
+	"require-dev": {
+		"kappa/tester": "1.1.*"
+	},
+	"autoload": {
+		"psr-0": {
+			"application": "src/"
+		},
+		"classmap": [
+			"src/application/exceptions.php"
+		]
+	}
+}
