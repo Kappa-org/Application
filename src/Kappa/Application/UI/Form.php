@@ -11,7 +11,6 @@
 namespace Kappa\Application\UI;
 
 use Kappa\Forms\Controls\AntiSpam;
-use Kappa\Forms\Controls\DatePicker;
 use Nette\Application\UI\Form as BaseForm;
 
 
@@ -29,18 +28,6 @@ class Form extends BaseForm
 	public function addAntiSpam($name, $label = null)
 	{
 		$control = new AntiSpam($label);
-
-		return $this[$name] = $control;
-	}
-
-	/**
-	 * @param string $name
-	 * @param string|null $label
-	 * @return DatePicker
-	 */
-	public function addDatePicker($name, $label = null)
-	{
-		$control = new DatePicker($label);
 
 		return $this[$name] = $control;
 	}
