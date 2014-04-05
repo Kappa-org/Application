@@ -10,8 +10,8 @@ Base application classes for work with Presenters, Forms, etc...
 
 ## Installation:
 
-The best way to install Kappa\Forms is using [Composer](https://getcomposer.org/)
+The best way to install Kappa\Application is using [Composer](https://getcomposer.org/)
 
 ```bash
-$ composer require kappa/forms:@dev
+$ composer require kappa/application:@dev
 ```
