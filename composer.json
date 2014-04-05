@@ -26,9 +26,6 @@
 	"autoload": {
 		"psr-0": {
 			"application": "src/"
-		},
-		"classmap": [
-			"src/application/exceptions.php"
-		]
+		}
 	}
 }
