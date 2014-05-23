@@ -21,7 +21,8 @@
 		"kappa/forms": "@dev"
 	},
 	"require-dev": {
-		"kappa/tester": "1.1.*"
+		"kappa/tester": "1.1.*",
+		"janmarek/mockista": "~1.0"
 	},
 	"autoload": {
 		"psr-0": {
