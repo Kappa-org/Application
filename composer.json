@@ -17,7 +17,7 @@
 		"issues": "https://github.com/Kappa-org/Application/issues"
 	},
 	"require": {
-		"nette/application": "2.2.*",
+		"nette/nette": "~2.1@dev",
 		"kappa/forms": "@dev"
 	},
 	"require-dev": {
