@@ -58,6 +58,7 @@ class LinkGenerator extends Object
 		if (!$presenter) {
 			throw new InvalidStateException("Missing presenter");
 		}
+
 		return $presenter->link($destination, $args);
 	}
-} 
+}
