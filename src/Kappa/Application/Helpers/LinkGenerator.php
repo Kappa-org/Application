@@ -10,6 +10,7 @@
 
 namespace Kappa\Application\Helpers;
 
+use Kappa\Application\InvalidStateException;
 use Nette\Application\Application;
 use Nette\Application\IPresenter;
 use Nette\Object;
@@ -20,6 +21,9 @@ use Nette\Object;
  */
 class LinkGenerator extends Object
 {
+	/** @var \Nette\Application\Application */
+	private $application;
+
 	/** @var \Nette\Application\IPresenter */
 	private $presenter;
 
@@ -28,7 +32,7 @@ class LinkGenerator extends Object
 	 */
 	public function __construct(Application $application)
 	{
-		$this->presenter= $application->getPresenter();
+		$this->application = $application;
 	}
 
 	/**
@@ -38,7 +42,7 @@ class LinkGenerator extends Object
 	public function setPresenter(IPresenter $presenter)
 	{
 		$this->presenter = $presenter;
-		
+
 		return $this;
 	}
 
@@ -46,9 +50,14 @@ class LinkGenerator extends Object
 	 * @param string $destination
 	 * @param array $args
 	 * @return string
+	 * @throws \Kappa\Application\InvalidStateException
 	 */
 	public function getLink($destination, array $args = array())
 	{
-		return $this->presenter->link($destination, $args);
+		$presenter = ($this->presenter) ? : $this->application->getPresenter();
+		if (!$presenter) {
+			throw new InvalidStateException("Missing presenter");
+		}
+		return $presenter->link($destination, $args);
 	}
 } 
