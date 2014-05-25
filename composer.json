@@ -26,6 +26,9 @@
 	"autoload": {
 		"psr-0": {
 			"Kappa": "src/"
-		}
+		},
+		"files": [
+			"src/Kappa/Application/exceptions.php"
+		]
 	}
 }
