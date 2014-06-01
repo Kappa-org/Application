@@ -10,6 +10,7 @@
 
 namespace Kappa\Application\UI;
 
+use Kappa\Application\InvalidArgumentException;
 use Nette\Application\UI\Presenter;
 
 /**
@@ -20,6 +21,12 @@ abstract class SecuredPresenter extends Presenter
 {
 	/** @var string */
 	protected $authLink = ':Admin:Auth:login';
+
+	/** @var string */
+	protected $logoutFlashMessage = array(
+		'type' => 'success',
+		'message' => 'Account has been logged out'
+	);
 
 	/**
 	 * @param $element
@@ -35,7 +42,10 @@ abstract class SecuredPresenter extends Presenter
 	public function handleLogout()
 	{
 		$this->getUser()->logout(true);
-		$this->flashMessage('Account has been logged out', 'success');
+		if (!isset($this->logoutFlashMessage['message']) || !isset($this->logoutFlashMessage['type'])) {
+			throw new InvalidArgumentException("Missing 'message' or 'type' index in logoutFLashMessage property");
+		}
+		$this->flashMessage($this->logoutFlashMessage['message'], $this->logoutFlashMessage['type']);
 		$this->redirect($this->authLink);
 	}
 
