@@ -16,7 +16,8 @@
 		"issues": "https://github.com/Kappa-org/Application/issues"
 	},
 	"require": {
-		"nette/nette": "~2.2"
+		"nette/application": "~2.2",
+		"nette/di": "~2.2"
 	},
 	"require-dev": {
 		"kappa/tester": "1.1.*",
