@@ -19,7 +19,7 @@ use Nette\Application\UI\Presenter;
 abstract class SecuredPresenter extends Presenter
 {
 	/** @var string */
-	protected $authLink = ':Admin:Auth:login';
+	private $authLink;
 
 	/**
 	 * @param $element
@@ -43,5 +43,16 @@ abstract class SecuredPresenter extends Presenter
 	{
 		parent::beforeRender();
 		$this->template->robots = "noindex, nofollow";
+	}
+
+	/**
+	 * @param string $authLink
+	 * @return $this
+	 */
+	public function setAuthLink($authLink)
+	{
+		$this->authLink = $authLink;
+
+		return $this;
 	}
 }
