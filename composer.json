@@ -5,7 +5,6 @@
 	"homepage": "https://github.com/Kappa-org/Application",
 	"license": ["BSD-3-Clause"],
 	"type": "library",
-	"minimum-stability": "dev",
 	"authors": [
 		{
 			"name": "Ondřej Záruba",
