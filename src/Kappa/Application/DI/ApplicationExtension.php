@@ -22,7 +22,7 @@ class ApplicationExtension extends CompilerExtension
 	{
 		$builder = $this->getContainerBuilder();
 
-		$builder->addDefinition($this->prefix('linkGenerator'))
-			->setClass('Kappa\Application\Helpers\LinkGenerator');
+		$builder->addDefinition($this->prefix('urlMatcher'))
+			->setClass('Kappa\Application\Helpers\UrlMatcher');
 	}
 }
