@@ -18,3 +18,12 @@ class InvalidStateException extends \RuntimeException
 {
 
 }
+
+/**
+ * Class InvalidArgumentException
+ * @package Kappa\Application
+ */
+class InvalidArgumentException extends \LogicException
+{
+
+}
