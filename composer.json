@@ -17,7 +17,8 @@
 	},
 	"require": {
 		"nette/application": "~2.2",
-		"nette/di": "~2.2"
+		"nette/di": "~2.2",
+		"nette/utils": "~2.2"
 	},
 	"require-dev": {
 		"kappa/tester": "1.1.*",
