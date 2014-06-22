@@ -18,11 +18,23 @@ use Nette\DI\CompilerExtension;
  */
 class ApplicationExtension extends CompilerExtension
 {
+	/** @var array */
+	private $defaultConfig = array(
+		'mapping' => true
+	);
+
 	public function loadConfiguration()
 	{
 		$builder = $this->getContainerBuilder();
+		$config = $this->getConfig($this->defaultConfig);
 
 		$builder->addDefinition($this->prefix('urlMatcher'))
 			->setClass('Kappa\Application\Helpers\UrlMatcher');
+
+		if ($config['mapping']) {
+			$appDir = isset($builder->parameters['appDir']) ? $builder->parameters['appDir'] : null;
+			$builder->getDefinition('nette.presenterFactory')
+				->setFactory('Kappa\Application\PresenterFactory', array($appDir));
+		}
 	}
 }
