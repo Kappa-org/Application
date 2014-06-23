@@ -36,6 +36,13 @@ class ApplicationExtensionTest extends TestCase
 		$service = $this->container->getByType('Kappa\Application\Helpers\UrlMatcher');
 		Assert::type('Kappa\Application\Helpers\UrlMatcher', $service);
 	}
+
+	public function testRouterFactory()
+	{
+		$service = $this->container->getByType('Kappa\Application\Routes\RouteFactory');
+		Assert::type('Kappa\Application\Routes\RouteFactory', $service);
+		Assert::count(1, $service->createRoute());
+	}
 }
 
 \run(new ApplicationExtensionTest(getContainer()));
