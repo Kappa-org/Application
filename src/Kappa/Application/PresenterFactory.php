@@ -21,9 +21,6 @@ use Nette\Utils\Strings;
 class PresenterFactory extends \Nette\Application\PresenterFactory
 {
 	/** @var array */
-	private $mapping = array();
-
-	/** @var array */
 	private $cache = array();
 
 	/**
@@ -59,7 +56,7 @@ class PresenterFactory extends \Nette\Application\PresenterFactory
 			? $this->mapping[array_shift($parts)]
 			: $this->mapping['*'];
 		$mapping = str_replace('<presenter>', $presenterName, $mask);
-		if (strpos($mapping, '<module>')) {
+		if (strpos($mapping, '<module>') !== false) {
 			$count = substr_count($mapping, '<module>');
 			if ($count != count($parts)) {
 				throw new InvalidStateException("No mapping mask for '$presenter'");
