@@ -39,6 +39,15 @@ if (extension_loaded('xdebug')) {
 	Tester\CodeCoverage\Collector::start(__DIR__ . '/coverage.dat');
 }
 
+function getContainer()
+{
+	$configurator = new \Nette\Configurator();
+	$configurator->setTempDirectory(__DIR__ . '/../temp');
+	$configurator->addConfig(__DIR__ . '/../data/config.neon');
+
+	return $configurator->createContainer();
+}
+
 function id($val)
 {
 	return $val;
