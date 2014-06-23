@@ -21,6 +21,11 @@ use Nette\Utils\Strings;
 class PresenterFactory extends \Nette\Application\PresenterFactory
 {
 	/** @var array */
+	private $mapping = array(
+		'*' => '<module>Module\<presenter>Presenter'
+	);
+
+	/** @var array */
 	private $cache = array();
 
 	/**
