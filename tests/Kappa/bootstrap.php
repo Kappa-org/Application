@@ -13,6 +13,8 @@ if (@!include __DIR__ . '/../../vendor/autoload.php') {
 	exit(1);
 }
 
+require_once __DIR__ . '/../data/Router.php';
+
 // configure environment
 Tester\Environment::setup();
 class_alias('Tester\Assert', 'Assert');
@@ -37,6 +39,15 @@ $_ENV = $_GET = $_POST = array();
 if (extension_loaded('xdebug')) {
 	xdebug_disable();
 	Tester\CodeCoverage\Collector::start(__DIR__ . '/coverage.dat');
+}
+
+function getContainer()
+{
+	$configurator = new \Nette\Configurator();
+	$configurator->setTempDirectory(__DIR__ . '/../temp');
+	$configurator->addConfig(__DIR__ . '/../data/config.neon');
+
+	return $configurator->createContainer();
 }
 
 function id($val)

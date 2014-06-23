@@ -18,6 +18,8 @@ use Nette\DI\CompilerExtension;
  */
 class ApplicationExtension extends CompilerExtension
 {
+	const TAG_ROUTE_FACTORY = 'kappa.routeFactory';
+
 	/** @var array */
 	private $defaultConfig = array(
 		'mapping' => true
@@ -36,5 +38,21 @@ class ApplicationExtension extends CompilerExtension
 			$builder->getDefinition('nette.presenterFactory')
 				->setFactory('Kappa\Application\PresenterFactory', array($appDir));
 		}
+
+		$builder->addDefinition($this->prefix('routeFactory'))
+			->setClass('Kappa\Application\Routes\RouteFactory');
+	}
+
+	public function beforeCompile()
+	{
+		$builder = $this->getContainerBuilder();
+		$routeFactory = $builder->getDefinition($this->prefix('routeFactory'));
+
+		foreach ($builder->findByTag(self::TAG_ROUTE_FACTORY) as $name => $_) {
+			$routeFactory->addSetup('addRoute', array('@'. $name));
+		}
+
+		$builder->getDefinition('router')
+			->setFactory($this->prefix('@routeFactory') . '::createRoute');
 	}
 }
