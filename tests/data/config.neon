@@ -1,0 +1,2 @@
+extensions:
+	application: Kappa\Application\DI\ApplicationExtension
