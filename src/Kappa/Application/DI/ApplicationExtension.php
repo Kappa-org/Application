@@ -20,6 +20,7 @@ class ApplicationExtension extends CompilerExtension
 {
 	const TAG_ROUTE_FACTORY = 'kappa.routeFactory';
 
+	/** @var array */
 	private $defaultConfig = array(
 		'mapping' => true
 	);
