@@ -11,6 +11,7 @@
 namespace Kappa\Application\DI;
 
 use Nette\DI\CompilerExtension;
+use Nette\PhpGenerator\ClassType;
 
 /**
  * Class ApplicationExtension
@@ -41,18 +42,24 @@ class ApplicationExtension extends CompilerExtension
 			$builder->getDefinition('nette.presenterFactory')
 				->setFactory('Kappa\Application\PresenterFactory', array($appDir));
 		}
-	}
-
-	public function beforeCompile()
-	{
-		$builder = $this->getContainerBuilder();
-		$routeFactory = $builder->getDefinition($this->prefix('routeFactory'));
-
-		foreach ($builder->findByTag(self::TAG_ROUTE_FACTORY) as $name => $_) {
-			$routeFactory->addSetup('addRoute', array('@'. $name));
-		}
 
 		$builder->getDefinition('router')
 			->setFactory($this->prefix('@routeFactory') . '::createRoute');
+	}
+
+	public function afterCompile(ClassType $class)
+	{
+		$builder = $this->getContainerBuilder();
+
+		$interface = 'Kappa\Application\Routes\IRouteFactory';
+		$service = $builder->getByType('Kappa\Application\Routes\RouteFactory');
+
+		$initialize = $class->getMethods()['initialize'];
+
+		$initialize->addBody('
+foreach($this->findByType(?) as $service) {
+	$this->getService(?)->addRoute($this->getService($service));
+}
+		', array($interface, $service));
 	}
 }

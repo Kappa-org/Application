@@ -1,7 +1,5 @@
 services:
-	-
-		class: Router
-		tags: [kappa.routeFactory]
+	- Router
 
 extensions:
 	application: Kappa\Application\DI\ApplicationExtension
