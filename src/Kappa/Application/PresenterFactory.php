@@ -48,7 +48,7 @@ class PresenterFactory extends \Nette\Application\PresenterFactory
 		$parts = explode(':', $presenter);
 		$presenterName = end($parts);
 		unset($parts[count($parts) - 1]);
-		$mask = isset($this->mapping[$parts[0]])
+		$mask = isset($parts[0], $this->mapping[$parts[0]])
 			? $this->mapping[array_shift($parts)]
 			: $this->mapping['*'];
 		$mapping = str_replace('<presenter>', $presenterName, $mask);
