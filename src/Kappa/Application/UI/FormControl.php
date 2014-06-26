@@ -10,8 +10,8 @@
 
 namespace Kappa\Application\UI;
 
-use Kappa\Forms\IFormFactory;
 use Nette\Application\UI\Control;
+use Nette\Forms\Form;
 
 /**
  * Class FormControl
@@ -19,28 +19,23 @@ use Nette\Application\UI\Control;
  */
 class FormControl extends Control
 {
-	/** @var \Kappa\Forms\IFormFactory */
-	private $formFactory;
-
-	/** @var mixed|null */
-	private $args;
+	/** @var \Nette\Application\UI\Form */
+	private $form;
 
 	/**
-	 * @param IFormFactory $formFactory
-	 * @param null|mixed $args
+	 * @param Form $form
 	 */
-	public function __construct(IFormFactory $formFactory, $args = null)
+	public function __construct(Form $form)
 	{
-		$this->formFactory = $formFactory;
-		$this->args = $args;
+		$this->form = $form;
 	}
 
 	/**
-	 * @return \Nette\Forms\Form
+	 * @return Form
 	 */
 	protected function createComponentForm()
 	{
-		return $this->formFactory->create($this->args);
+		return $this->form;
 	}
 
 	/**
