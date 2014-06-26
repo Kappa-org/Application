@@ -44,11 +44,11 @@ class FormControl extends Control
 	}
 
 	/**
-	 * @param string $file
+	 * @param string|null $file
 	 */
-	public function render($file)
+	public function render($file = null)
 	{
-		$this->template->setFile($file);
+		$this->template->setFile(($file) ? : __DIR__ . '/templates/defaultForm.latte');
 		$this->template->render();
 	}
 } 
