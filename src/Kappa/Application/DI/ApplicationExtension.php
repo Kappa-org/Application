@@ -32,20 +32,4 @@ class ApplicationExtension extends CompilerExtension
 		$builder->getDefinition('router')
 			->setFactory($this->prefix('@routeFactory') . '::createRoute');
 	}
-
-	public function afterCompile(ClassType $class)
-	{
-		$builder = $this->getContainerBuilder();
-
-		$interface = 'Kappa\Application\Routes\IRouteFactory';
-		$service = $builder->getByType('Kappa\Application\Routes\RouteFactory');
-
-		$initialize = $class->getMethods()['initialize'];
-
-		$initialize->addBody('
-foreach($this->findByType(?) as $service) {
-	$this->getService(?)->addRoute($this->getService($service));
-}
-		', array($interface, $service));
-	}
 }

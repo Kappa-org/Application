@@ -10,9 +10,8 @@
 
 namespace Kappa\Application\Routes;
 
-use Kappa\Application\InvalidArgumentException;
-use Nette\Application\IRouter;
 use Nette\Application\Routers\RouteList;
+use Nette\DI\Container;
 use Nette\Object;
 
 /**
@@ -21,30 +20,15 @@ use Nette\Object;
  */
 class RouteFactory extends Object
 {
-	/** @var array */
-	private $lists = array();
-
-	public function __construct()
-	{
-		$this->lists = new RouteList();
-	}
+	/** @var \Nette\DI\Container */
+	private $container;
 
 	/**
-	 * @param IRouteFactory|\Nette\Application\IRouter $rout
-	 * @return $this
-	 * @throws \Kappa\Application\InvalidArgumentException
+	 * @param Container $container
 	 */
-	public function addRoute($rout)
+	public function __construct(Container $container)
 	{
-		if ($rout instanceof IRouter) {
-			$this->lists[] = $rout;
-		} elseif ($rout instanceof IRouteFactory) {
-			$this->lists[] = $rout->createRouter();
-		} else {
-			throw new InvalidArgumentException('Route must be instance of Nette\Application\IRouter or Kappa\Application\Routes\IRouteFactory');
-		}
-
-		return $this;
+		$this->container = $container;
 	}
 
 	/**
@@ -52,6 +36,13 @@ class RouteFactory extends Object
 	 */
 	public function createRoute()
 	{
-		return $this->lists;
+		$routeFactories = $this->container->findByType('Kappa\Application\Routes\IRouteFactory');
+		$route = new RouteList();
+		/** @var \Kappa\Application\Routes\IRouteFactory $factory */
+		foreach ($routeFactories as $factory) {
+			$route[] = $this->container->getService($factory)->createRouter();
+		}
+
+		return $route;
 	}
 } 
