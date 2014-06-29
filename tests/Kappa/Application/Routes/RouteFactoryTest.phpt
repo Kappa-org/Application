@@ -15,6 +15,7 @@ namespace Kappa\Application\Tests;
 use Kappa\Application\Routes\RouteFactory;
 use Kappa\Tester\TestCase;
 use Nette\Application\Routers\RouteList;
+use Nette\DI\Container;
 use Tester\Assert;
 
 require_once __DIR__ . '/../../bootstrap.php';
@@ -29,19 +30,25 @@ class RouteFactoryTest extends TestCase
 	/** @var \Kappa\Application\Routes\RouteFactory */
 	private $routeFactory;
 
+	/** @var \Nette\DI\Container */
+	private $container;
+
+	/**
+	 * @param Container $container
+	 */
+	public function __construct(Container $container)
+	{
+		$this->container = $container;
+	}
+
 	protected function setUp()
 	{
-		$this->routeFactory = new RouteFactory();
+		$this->routeFactory = new RouteFactory($this->container);
 	}
 
 	public function testCreateRoute()
 	{
-		Assert::type(get_class($this->routeFactory), $this->routeFactory->addRoute(new \Router()));
-		Assert::type(get_class($this->routeFactory), $this->routeFactory->addRoute(new RouteList()));
-		Assert::count(2, $this->routeFactory->createRoute());
-		Assert::throws(function () {
-			$this->routeFactory->addRoute(new \stdClass());
-		}, 'Kappa\Application\InvalidArgumentException');
+		Assert::count(1, $this->routeFactory->createRoute());
 	}
 }
 
