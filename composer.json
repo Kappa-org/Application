@@ -25,11 +25,11 @@
 		"nette/nette": "~2.2"
 	},
 	"autoload": {
-		"psr-0": {
-			"Kappa": "src/"
+		"psr-4": {
+			"Kappa\\Application\\": "src/"
 		},
 		"files": [
-			"src/Kappa/Application/exceptions.php"
+			"src/exceptions.php"
 		]
 	}
 }
