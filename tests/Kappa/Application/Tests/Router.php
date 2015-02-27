@@ -8,14 +8,25 @@
  * file that was distributed with this source code.
  */
 
-class Router implements \Kappa\Application\Routes\IRouteFactory
+namespace KappaTests\Application\Tests;
+
+use Kappa\Application\Routes\IRouteFactory;
+use Nette\Application\Routers\RouteList;
+
+/**
+ * Class Router
+ *
+ * @package KappaTests\Application\Tests
+ * @author Ondřej Záruba <http://zaruba-ondrej.cz>
+ */
+class Router implements IRouteFactory
 {
 	/**
 	 * @return \Nette\Application\IRouter
 	 */
 	public function createRouter()
 	{
-		$router = new \Nette\Application\Routers\RouteList();
+		$router = new RouteList();
 
 		return $router;
 	}

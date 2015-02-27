@@ -1,5 +1,5 @@
 services:
-	- Router
+	- KappaTests\Application\Tests\Router
 
 extensions:
-	application: Kappa\Application\DI\ApplicationExtension
+	- Kappa\Application\DI\ApplicationExtension
