@@ -3,7 +3,7 @@
 	"description": "Base application classes for work with Presenters, Forms, etc...",
 	"keywords": ["Nette", "Kappa", "Application", "Form", "Secured", "Presenters", "Controllers"],
 	"homepage": "https://github.com/Kappa-org/Application",
-	"license": ["BSD-3-Clause"],
+	"license": "BSD-3-Clause",
 	"type": "library",
 	"authors": [
 		{

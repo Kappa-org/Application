@@ -1,5 +1,4 @@
-# License
-
+# New BSD License
 
 Copyright (c) 2014 Ondřej Záruba (http://zaruba-ondrej.cz)
 All rights reserved.
