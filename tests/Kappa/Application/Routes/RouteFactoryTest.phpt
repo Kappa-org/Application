@@ -6,16 +6,14 @@
  *
  * For the full copyright and license information, please view the license.md
  * file that was distributed with this source code.
- * 
+ *
  * @testCase
  */
 
 namespace Kappa\Application\Tests;
 
 use Kappa\Application\Routes\RouteFactory;
-use Kappa\Tester\TestCase;
-use Nette\Application\Routers\RouteList;
-use Nette\DI\Container;
+use KappaTests\Application\Tests\ContainerTestCase;
 use Tester\Assert;
 
 require_once __DIR__ . '/../../bootstrap.php';
@@ -25,25 +23,14 @@ require_once __DIR__ . '/../../../data/Router.php';
  * Class RouteFactoryTest
  * @package Kappa\Application\Tests
  */
-class RouteFactoryTest extends TestCase
+class RouteFactoryTest extends ContainerTestCase
 {
 	/** @var \Kappa\Application\Routes\RouteFactory */
 	private $routeFactory;
 
-	/** @var \Nette\DI\Container */
-	private $container;
-
-	/**
-	 * @param Container $container
-	 */
-	public function __construct(Container $container)
-	{
-		$this->container = $container;
-	}
-
 	protected function setUp()
 	{
-		$this->routeFactory = new RouteFactory($this->container);
+		$this->routeFactory = new RouteFactory($this->getContainer());
 	}
 
 	public function testCreateRoute()
@@ -52,4 +39,4 @@ class RouteFactoryTest extends TestCase
 	}
 }
 
-\run(new RouteFactoryTest(getContainer()));
+\run(new RouteFactoryTest());
