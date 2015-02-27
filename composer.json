@@ -24,13 +24,13 @@
     "issues": "https://github.com/Kappa-org/Application/issues"
   },
   "require": {
-    "nette/application": "~2.2",
-    "nette/di": "~2.2"
+    "nette/application": "~2.2@dev",
+    "nette/di": "~2.2@dev"
   },
   "require-dev": {
     "nette/tester": "~1.0@dev",
     "mockery/mockery": "~0.9@dev",
-    "nette/nette": "~2.2"
+    "nette/nette": "~2.2@dev"
   },
   "autoload": {
     "psr-4": {
