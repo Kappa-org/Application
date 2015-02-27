@@ -29,7 +29,7 @@
   },
   "require-dev": {
     "nette/tester": "~1.0@dev",
-    "janmarek/mockista": "~1.0",
+    "mockery/mockery": "~0.9@dev",
     "nette/nette": "~2.2"
   },
   "autoload": {
