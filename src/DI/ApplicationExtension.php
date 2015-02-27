@@ -29,7 +29,11 @@ class ApplicationExtension extends CompilerExtension
 		$builder->addDefinition($this->prefix('routeFactory'))
 			->setClass('Kappa\Application\Routes\RouteFactory');
 
-		$builder->getDefinition('router')
-			->setFactory($this->prefix('@routeFactory') . '::createRoute');
+		if ($builder->hasDefinition('routing.router')) {
+			$router = $builder->getDefinition('routing.router');
+		} else {
+			$router = $builder->getDefinition('router');
+		}
+		$router->setFactory($this->prefix('@routeFactory') . '::createRoute');
 	}
 }
