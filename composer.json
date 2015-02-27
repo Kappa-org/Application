@@ -1,35 +1,43 @@
 {
-	"name": "kappa/application",
-	"description": "Base application classes for work with Presenters, Forms, etc...",
-	"keywords": ["Nette", "Kappa", "Application", "Form", "Secured", "Presenters", "Controllers"],
-	"homepage": "https://github.com/Kappa-org/Application",
-	"license": "BSD-3-Clause",
-	"type": "library",
-	"authors": [
-		{
-			"name": "Ondřej Záruba",
-			"homepage": "http://zaruba-ondrej.cz"
-		}
-	],
-	"support": {
-		"email": "zarubaondra@gmail.com",
-		"issues": "https://github.com/Kappa-org/Application/issues"
-	},
-	"require": {
-		"nette/application": "~2.2",
-		"nette/di": "~2.2"
-	},
-	"require-dev": {
-		"kappa/tester": "1.1.*",
-		"janmarek/mockista": "~1.0",
-		"nette/nette": "~2.2"
-	},
-	"autoload": {
-		"psr-4": {
-			"Kappa\\Application\\": "src/"
-		},
-		"files": [
-			"src/exceptions.php"
-		]
-	}
+  "name": "kappa/application",
+  "description": "Base application classes for work with Presenters, Forms, etc...",
+  "keywords": [
+    "Nette",
+    "Kappa",
+    "Application",
+    "Form",
+    "Secured",
+    "Presenters",
+    "Controllers"
+  ],
+  "homepage": "https://github.com/Kappa-org/Application",
+  "license": "BSD-3-Clause",
+  "type": "library",
+  "authors": [
+    {
+      "name": "Ondřej Záruba",
+      "homepage": "http://zaruba-ondrej.cz"
+    }
+  ],
+  "support": {
+    "email": "zarubaondra@gmail.com",
+    "issues": "https://github.com/Kappa-org/Application/issues"
+  },
+  "require": {
+    "nette/application": "~2.2",
+    "nette/di": "~2.2"
+  },
+  "require-dev": {
+    "kappa/tester": "1.1.*",
+    "janmarek/mockista": "~1.0",
+    "nette/nette": "~2.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "Kappa\\Application\\": "src/"
+    },
+    "files": [
+      "src/exceptions.php"
+    ]
+  }
 }
