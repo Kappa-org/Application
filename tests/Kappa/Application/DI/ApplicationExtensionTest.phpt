@@ -6,43 +6,37 @@
  *
  * For the full copyright and license information, please view the license.md
  * file that was distributed with this source code.
- * 
+ *
  * @testCase
  */
 
 namespace Kappa\Application\Tests;
 
-use Kappa\Tester\TestCase;
-use Nette\DI\Container;
+use KappaTests\Application\Tests\ContainerTestCase;
 use Tester\Assert;
 
 require_once __DIR__ . '/../../bootstrap.php';
 
-class ApplicationExtensionTest extends TestCase
+/**
+ * Class ApplicationExtensionTest
+ *
+ * @package Kappa\Application\Tests
+ * @author Ondřej Záruba <http://zaruba-ondrej.cz>
+ */
+class ApplicationExtensionTest extends ContainerTestCase
 {
-	/** @var \Nette\DI\Container */
-	private $container;
-
-	/**
-	 * @param Container $container
-	 */
-	public function __construct(Container $container)
-	{
-		$this->container = $container;
-	}
-
 	public function testUrlMatcher()
 	{
-		$service = $this->container->getByType('Kappa\Application\Helpers\UrlMatcher');
+		$service = $this->getContainer()->getByType('Kappa\Application\Helpers\UrlMatcher');
 		Assert::type('Kappa\Application\Helpers\UrlMatcher', $service);
 	}
 
 	public function testRouterFactory()
 	{
-		$service = $this->container->getByType('Kappa\Application\Routes\RouteFactory');
+		$service = $this->getContainer()->getByType('Kappa\Application\Routes\RouteFactory');
 		Assert::type('Kappa\Application\Routes\RouteFactory', $service);
 		Assert::count(1, $service->createRoute());
 	}
 }
 
-\run(new ApplicationExtensionTest(getContainer()));
+\run(new ApplicationExtensionTest());
