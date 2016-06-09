@@ -21,13 +21,20 @@ class FormControl extends Control
 {
 	/** @var \Nette\Application\UI\Form */
 	private $form;
+	
+	/** @var null|string */
+	private $defaultFile;
 
 	/**
+	 * FormControl constructor.
 	 * @param Form $form
+	 * @param string|null $defaultFile
 	 */
-	public function __construct(Form $form)
+	public function __construct(Form $form, $defaultFile = null
+	)
 	{
 		$this->form = $form;
+		$this->defaultFile = $defaultFile;
 	}
 
 	/**
@@ -43,7 +50,14 @@ class FormControl extends Control
 	 */
 	public function render($file = null)
 	{
-		$this->template->setFile(($file) ? : __DIR__ . '/templates/defaultForm.latte');
+		if ($file === null) {
+			if ($this->defaultFile !== null) {
+				$file = $this->defaultFile;
+			} else {
+				$file = __DIR__ . '/templates/defaultForm.latte';
+			}
+		}
+		$this->template->setFile($file);
 		$this->template->render();
 	}
 } 
